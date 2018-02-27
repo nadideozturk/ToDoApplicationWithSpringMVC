@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login Page</title>
+<title>Welcome</title>
 </head>
 <body>
-<form action="/login.do" method = "post">
-Username:<input type="text" name="userName"/> Password:<input type="password" name="password"/> <input type="submit" value="submit"/>
-</form>
+<h1>Welcome ${userName} and your password is ${password}</h1>
 </body>
 </html>
