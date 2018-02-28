@@ -8,7 +8,7 @@
 </head>
 <body>
 <p>${error}</p>
-<form action="/to/login" method = "post">
+<form action="/login" method = "post">
 Username:<input type="text" name="userName"/> Password:<input type="password" name="password"/> <input type="submit" value="submit"/>
 </form>
 </body>

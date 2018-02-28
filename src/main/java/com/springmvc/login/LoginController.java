@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-
-
 @Controller
+@SessionAttributes("userName")
 public class LoginController {
 	
 	@Autowired
 	LoginService service;
+	
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String showLoginPage() {
