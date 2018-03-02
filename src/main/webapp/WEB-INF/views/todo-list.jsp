@@ -9,6 +9,7 @@
 			    		rel="stylesheet">
 	</head>
 	<body>
+		<%@ include file="nav.jspf"%>
 		<div class="container">
 			<table class="table table-striped">
 				<caption>Hi ${userName} your todo list</caption>

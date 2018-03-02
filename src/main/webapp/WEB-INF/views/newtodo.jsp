@@ -7,6 +7,7 @@
 		<title>Add Todo</title>
 	</head>
 	<body>
+	<%@ include file="nav.jspf"%>
 		<div class="container">
 			<h1>Add A New ToDo</h1>
 			<form:form method="post" modelAttribute="todo">
