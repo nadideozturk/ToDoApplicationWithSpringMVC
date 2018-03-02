@@ -2,10 +2,13 @@ package com.springmvc.todo;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 
 public class Todo {
 	private int id;
 	private String user;
+	@Size(min=6, message="Enter at least 6 characters.")
 	private String desc;
 	private Date targetDate;
 	private boolean isDone;
@@ -18,7 +21,7 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.isDone = isDone;
 	}
-
+	public Todo() {}
 	public int getId() {
 		return id;
 	}
@@ -87,5 +90,7 @@ public class Todo {
 				"Todo [id=%s, user=%s, desc=%s, targetDate=%s, isDone=%s]", id,
 				user, desc, targetDate, isDone);
 	}
+	
+	
 
 }
