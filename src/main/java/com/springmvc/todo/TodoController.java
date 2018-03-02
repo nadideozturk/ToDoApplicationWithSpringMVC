@@ -2,9 +2,7 @@ package com.springmvc.todo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -12,15 +10,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-
-
+import com.springmvc.security.UserService;
 
 @Controller
-@SessionAttributes("userName")
 public class TodoController {
 	
 	@Autowired
 	TodoService service;
+	
+	@Autowired
+	private UserService userService;
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
@@ -31,14 +30,14 @@ public class TodoController {
 	 
 	@RequestMapping(value="/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model, String userName) {
-		userName = (String) model.get("userName");
-		model.addAttribute("todolist",service.retrieveTodos(userName));
+		String user = userService.getLoggedInUserName();
+		model.addAttribute("todolist", service.retrieveTodos(user));
 		return "todo-list";
 	}
 	
 	@RequestMapping(value="/add-todo", method = RequestMethod.GET)
 	public String showNewTodoCreation(ModelMap model) {
-		model.addAttribute("todo", new Todo(0,"nadide","hddhhggg",new Date(),false));
+		model.addAttribute("todo", new Todo());
 		return "newtodo";
 	}
 	
@@ -48,7 +47,7 @@ public class TodoController {
 			return "newtodo";
 		}
 		model.clear();
-		service.addTodo("nadide", todo.getDesc(), new Date(), false);
+		service.addTodo(userService.getLoggedInUserName(), todo.getDesc(), todo.getTargetDate(), false);
 		return "redirect:list-todos";
 	}
 	
@@ -71,7 +70,7 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "newtodo";
 		}
-		todo.setUser(model.get("userName").toString());
+		todo.setUser(userService.getLoggedInUserName());
 		service.updateTodo(todo);
 		return "redirect:list-todos";
 	}

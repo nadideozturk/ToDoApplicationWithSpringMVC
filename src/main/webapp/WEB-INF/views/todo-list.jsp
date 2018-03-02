@@ -12,7 +12,7 @@
 		<%@ include file="nav.jspf"%>
 		<div class="container">
 			<table class="table table-striped">
-				<caption>Hi ${userName} your todo list</caption>
+				<caption><spring:message code="todo.caption"/></caption>
 				<thead>
 					<tr>
 						<th>Description</th>
