@@ -78,6 +78,7 @@
 					<version>2.2</version>
 					<configuration>
 						<path>/</path>
+						<port>8090</port>
 						<contextReloadable>true</contextReloadable>
 					</configuration>
 				</plugin>
